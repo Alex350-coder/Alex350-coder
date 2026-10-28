@@ -1,14 +1,9 @@
+import { ACCENT, BORDER, FONT, backgroundGradient, escapeXml, formatNumber } from './theme.mjs';
+
 const WIDTH = 840;
 const HEIGHT = 270;
 const PIXEL = 7;
-const ACCENT = '#3ddc97';
 const FALLBACK_LANG_COLORS = ['#a97bff', '#dea584', '#f1e05a', '#3572a5'];
-const FONT = "'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace";
-
-const escapeXml = (s) =>
-  String(s).replace(/[<>&'"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' })[c]);
-
-const formatNumber = (n) => (n === null || n === undefined ? '—' : n.toLocaleString('en-US'));
 
 function wrap(text, maxChars, maxLines) {
   const lines = [];
@@ -101,13 +96,9 @@ export function renderCard(profile, pixels) {
     @keyframes scan { 0% { transform: translateY(0); opacity: .55; } 100% { transform: translateY(${avatarSize - 3}px); opacity: .55; } }
     @keyframes blink { 50% { opacity: 0; } }
   </style>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0d1117"/>
-      <stop offset="1" stop-color="#0f1f1a"/>
-    </linearGradient>
+  <defs>${backgroundGradient('bg')}
   </defs>
-  <rect x=".5" y=".5" width="${WIDTH - 1}" height="${HEIGHT - 1}" rx="16" fill="url(#bg)" stroke="#30363d"/>
+  <rect x=".5" y=".5" width="${WIDTH - 1}" height="${HEIGHT - 1}" rx="16" fill="url(#bg)" stroke="${BORDER}"/>
 
   <g class="fade" style="animation-delay:.1s">
     <text x="36" y="44" fill="${ACCENT}" font-size="14">@${escapeXml(profile.login)}<tspan class="cursor">_</tspan></text>
