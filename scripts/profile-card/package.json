@@ -1,0 +1,12 @@
+{
+  "name": "profile-card",
+  "private": true,
+  "type": "module",
+  "description": "Generates an animated SVG profile card with a pixel-art avatar for the GitHub profile README",
+  "scripts": {
+    "generate": "node generate.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  }
+}
